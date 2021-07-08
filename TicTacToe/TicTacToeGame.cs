@@ -43,21 +43,42 @@ namespace TicTacToe
                 Console.WriteLine("Invalid player Option! Please try Again!");
                 return default;
             }
-            Console.WriteLine("Player has chosen {0} and computer has chosen {1}", player, computer);
+
+            Console.WriteLine("Player has chosen: {0} and computer has chosen: {1}", player, computer);
             return (computer);
         }
+
         //Display Board
         public static void DisplayBoard(char[] board)
         {
+            Console.WriteLine("Displaying Board");
 
-            Console.WriteLine("  {0}  |  {1}  |  {2}", board[1], board[2], board[3]);
+            Console.WriteLine("\n  {0}  |  {1}  |  {2}", board[1], board[2], board[3]);
             Console.WriteLine("_____|_____|_____ ");
+            Console.WriteLine("     |     |      ");
             Console.WriteLine("  {0}  |  {1}  |  {2}", board[4], board[5], board[6]);
             Console.WriteLine("_____|_____|_____ ");
             Console.WriteLine("  {0}  |  {1}  |  {2}", board[7], board[8], board[9]);
             Console.WriteLine("     |     |      ");
         }
 
+        public static void MakeaMove(char[] board, char player)
+        {
+            while(true)
+            {
+                Console.WriteLine("Enter which position to place in range(1 to 9)");
+                int position = Convert.ToInt32(Console.ReadLine());
+                if(board[position]== ' ')
+                {
+                    board[position] = player;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("that position is already occupied! Try again");
+                }
+            }
+        }
         //Main method
         static void Main(string[] args)
         {    
@@ -66,6 +87,9 @@ namespace TicTacToe
             char player = GetPlayerInput();
             char computer = CalculateComputerInput(player);
             DisplayBoard(board);
+            MakeaMove(board,player);
+            DisplayBoard(board);
+
         }
     }
 }
